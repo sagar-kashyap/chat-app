@@ -1,17 +1,18 @@
-import React from "react";
+import {React,useState} from "react";
 import { TopNav } from "./TopNav.js";
 import  {Layout} from "./Layout.js";
 import TextBoxComponent from "./TextBox.js";
 import InputComponent from "./Input.js";
 function ChatComponent(){
+
+    const [textValue,setTextValue]=useState("0")
     return(
         <>
         <Layout>
         <TopNav />
-        <TextBoxComponent />
-
+        <TextBoxComponent data={textValue}/>
       </Layout>
-      <InputComponent />
+      <InputComponent getData={setTextValue} />
         </>
     )
 }

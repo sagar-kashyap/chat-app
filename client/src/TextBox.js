@@ -1,11 +1,14 @@
-import { Card, Text } from "@nextui-org/react";
+import { Card, Text, Grid } from "@nextui-org/react";
 
-export default function TextBoxComponent({props}) {
+export default function TextBoxComponent(props) {
   return (
-    <Card variant="flat" css={{ mw: "400px", margin:"30px" }}>
+    <Grid xs={8} sm={5}>
+
+    <Card variant="flat" css={{ margin:"30px" }}>
       <Card.Body>
-        <Text>Sagar</Text>
+        <Text>{props.data}</Text>
       </Card.Body>
     </Card>
+    </Grid>
   );
 }
