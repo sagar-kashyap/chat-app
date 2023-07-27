@@ -10,16 +10,15 @@ import { ToastContainer, toast } from 'react-toastify';
 function ChatComponent(){
 
     const [admin,setAdmin]=useState("")
-    const [newuser,setNewuser]=useState(null)
     useEffect(()=>{
 
-      socket.once('user-joined',data=>{
+      socket.on('user-joined',data=>{
         console.log(data)
-        setNewuser(data)
-        notify(newuser)
+       
+        notify(data)
        })
-       return socket.off('user-joined')
-       },[newuser])
+      //  return socket.off('user-joined')
+       },[])
 
        const notify = (user) => toast(`${user}`+" "+"Joined the chat");
     return(

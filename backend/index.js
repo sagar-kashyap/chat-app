@@ -16,7 +16,7 @@ io.on('connection',socket=>{
     socket.on('new-user-joined',name=>{
         users[socket.id]=name;
         console.log(users)
-        socket.broadcast.emit('user-joined',name)
+        socket.broadcast.emit('user-joined',users[socket.id])
     })
 
 

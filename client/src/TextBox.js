@@ -1,7 +1,7 @@
 import {Container, Card, Text, Row } from "@nextui-org/react";
 import { socket } from "./socket";
 import { useEffect, useState } from "react";
-
+import ScrollToBottom from "react-scroll-to-bottom";
 export default function TextBoxComponent(props) {
   const [text,setText]=useState([])
 
@@ -13,8 +13,6 @@ export default function TextBoxComponent(props) {
      
     })
     },[])
-
-  
 
   return (
     <div style={{display:"grid"}}>
@@ -58,7 +56,6 @@ export default function TextBoxComponent(props) {
     
       }
     })}
-      
   </div>
     )
   ;
