@@ -1,11 +1,12 @@
 import {Grid,Button, Input } from "@nextui-org/react";
 import { useState } from "react";
+import { socket } from "./socket";
 
 
-export default function InputComponent(props) {
+export default function InputComponent() {
     const [message, setMessage]=useState("")
     const button=()=>{
-        props.getData(message)
+      socket.emit('send',message)
         console.log(message)
     }
     const handleChange=(event)=>{

@@ -1,13 +1,30 @@
-const express = require("express");
-const cors = require("cors");
-
-const app = express();
-app.use(express.json());
-app.use(cors({ origin: true }));
-
-app.post("/authenticate", async (req, res) => {
-  const { username } = req.body;
-  return res.json({ username: username, secret: "sha256..." });
+const express = require("express")
+const app = express()
+const cors = require("cors")
+const http = require('http').Server(app);
+const PORT = 4000
+const io = require('socket.io')(http, {
+    cors: {
+        origin: "http://localhost:3000"
+    }
 });
 
-app.listen(3001);
+app.use(cors())
+const users={}
+
+io.on('connection',socket=>{
+    socket.on('new-user-joined',name=>{
+        users[socket.id]=name;
+        console.log(users)
+        socket.broadcast.emit('user-joined',name)
+    })
+
+
+socket.on('send', message=>{
+    console.log(message)
+    socket.broadcast.emit('receive',{message:message,name:users[socket.id]})
+    socket.emit('receive',{message:message,name:users[socket.id]})
+})
+})
+
+http.listen(PORT)
